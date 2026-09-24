@@ -394,23 +394,32 @@ function abrirCuadroComparativo(modelo, datos) {
         }
         .foto-card.propio { border: 2px solid var(--accent); }
         .foto-card .foto-wrap {
+          position: relative;
           width: 100%;
           aspect-ratio: 4 / 3;
           background: rgba(255,255,255,0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
           overflow: hidden;
         }
         .foto-card .foto-wrap img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
+          z-index: 2;
         }
         .foto-card .placeholder-foto {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 10px;
           font-size: 11px;
           color: var(--text-muted);
-          padding: 10px;
         }
         .foto-card .nombre-vehiculo {
           padding: 8px 10px;
