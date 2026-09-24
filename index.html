@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Fotos y Videos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="top">
+    <div class="brand"><span>GEELY</span></div>
+    <div class="tagline">Catálogo de fotos y videos</div>
+  </header>
+
+  <!-- ===========================================================
+       MENÚ SUPERIOR (3 pestañas)
+       -----------------------------------------------------------
+       Controla qué bloque se muestra debajo al elegir un modelo:
+       fotos y videos, comparador, o calculadora de consumos.
+       =========================================================== -->
+  <nav class="tabs-principales" id="tabs-principales">
+    <button class="tab-btn activo" type="button" data-vista="fotos">Ver fotos y videos</button>
+    <button class="tab-btn" type="button" data-vista="comparar">Comparar modelos</button>
+    <button class="tab-btn" type="button" data-vista="consumos">Calculadora de consumos</button>
+  </nav>
+
+  <!-- ===========================================================
+       BANNER DESLIZABLE (3 imágenes)
+       -----------------------------------------------------------
+       Reemplaza las imágenes en /images/banner-1.jpg, banner-2.jpg
+       y banner-3.jpg por las tuyas.
+
+       TAMAÑO RECOMENDADO: 1600 x 900 px (relación 16:9), JPG optimizado
+       (idealmente menos de 300 KB cada una). Se usa la MISMA imagen
+       para mobile y desktop: el recorte se ajusta solo gracias a
+       "object-fit: cover", así que no necesitas crear versiones
+       distintas por tamaño de pantalla.
+       =========================================================== -->
+  <section class="hero-slider" id="hero-slider">
+    <div class="slides-track" id="slides-track">
+
+      <div class="slide">
+        <div class="placeholder-slide" data-fallback-for="images/banner-1.jpg">
+          <strong>Banner 1</strong>
+          <span>Coloca aquí images/banner-1.jpg (1600x900px)</span>
+        </div>
+        <img src="images/banner-1.jpg" alt="Banner 1"
+             onerror="this.remove()">
+      </div>
+
+      <div class="slide">
+        <div class="placeholder-slide" data-fallback-for="images/banner-2.jpg">
+          <strong>Banner 2</strong>
+          <span>Coloca aquí images/banner-2.jpg (1600x900px)</span>
+        </div>
+        <img src="images/banner-2.jpg" alt="Banner 2"
+             onerror="this.remove()">
+      </div>
+
+      <div class="slide">
+        <div class="placeholder-slide" data-fallback-for="images/banner-3.jpg">
+          <strong>Banner 3</strong>
+          <span>Coloca aquí images/banner-3.jpg (1600x900px)</span>
+        </div>
+        <img src="images/banner-3.jpg" alt="Banner 3"
+             onerror="this.remove()">
+      </div>
+
+    </div>
+
+    <button class="arrow prev" id="arrow-prev" aria-label="Anterior">&#8249;</button>
+    <button class="arrow next" id="arrow-next" aria-label="Siguiente">&#8250;</button>
+
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <main>
+    <section class="seccion-modelos">
+      <p class="eyebrow">Catálogo interno</p>
+      <h2 id="titulo-seccion">Elige tu modelo</h2>
+      <p id="descripcion-seccion">Selecciona el modelo, luego la versión y el color para ir directo a la carpeta de Drive.</p>
+
+      <div id="grupos-modelos">
+        <!-- Los grupos (SUV, NEV, Sedán, 3 Filas) y sus cards se generan
+             por JS desde categorias.js + catalogo.js -->
+      </div>
+    </section>
+
+    <!-- Fondo oscuro detrás del panel flotante -->
+    <div class="panel-backdrop" id="panel-backdrop"></div>
+
+    <div class="panel-seleccion" id="panel-seleccion">
+      <button class="panel-cerrar" id="panel-cerrar" type="button" aria-label="Cerrar">&times;</button>
+      <p class="modelo-actual" id="nombre-modelo-actual"></p>
+
+      <!-- Vista: Fotos y videos -->
+      <div class="bloque-panel vista-panel activa" id="vista-fotos" data-vista="fotos">
+        <div class="campo">
+          <label for="select-version">Versión</label>
+          <select id="select-version" disabled>
+            <option value="" disabled selected>Elige un modelo primero</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="select-color">Color</label>
+          <select id="select-color" disabled>
+            <option value="" disabled selected>Primero elige una versión</option>
+          </select>
+        </div>
+
+        <button class="btn-ver" id="btn-ver" disabled>Ver fotos y videos</button>
+      </div>
+
+      <!-- Vista: Comparador -->
+      <div class="bloque-panel vista-panel" id="vista-comparar" data-vista="comparar">
+        <div class="campo">
+          <label for="select-comparador-competidor">Elige modelo a comparar</label>
+          <select id="select-comparador-competidor" disabled>
+            <option value="" disabled selected>Elige un modelo primero</option>
+          </select>
+        </div>
+
+        <button class="btn-comparar" id="btn-comparar" disabled>Comparar</button>
+      </div>
+
+      <!-- Vista: Calculadora de consumos (próximamente) -->
+      <div class="bloque-panel vista-panel" id="vista-consumos" data-vista="consumos">
+        <p class="vista-proximamente">🚧 La calculadora de consumos para este modelo estará disponible próximamente.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="catalogo.js"></script>
+  <script src="categorias.js"></script>
+  <script src="comparador.js"></script>
+  <script src="comparaciones.js"></script>
+  <script src="data-loader.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
